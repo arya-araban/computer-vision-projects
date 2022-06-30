@@ -1,0 +1,29 @@
+clear
+
+im1 = imread('C:\Users\Arya\Desktop\computer vision\HW\Images\1\Elaine.bmp');
+
+imshow(im1); 
+[m,n,p]=size(im1);
+midY_OG = m/2;
+midx_OG = n/2;
+
+deg = 180;
+thet = deg*pi/180;
+
+output_m = m*2;
+midY_rotated = output_m/2;
+output_n = n*2;
+midX_rotated = output_n/2;
+for t=1:output_m
+   for s=1:output_n
+       %Here we're doing the affine transformation as well as inverse
+       %mapping, hen
+      i = round((t-m)*cos(thet)+(s-n)*sin(thet)+m/2);
+      j = round((s-n)*cos(thet)+n/2-(t-m)*sin(thet));
+      if i>0 && j>0 && i<=m && j<=n           
+         im2(t,s,:)=im1(i,j,:);
+      end
+   end
+end
+figure;
+imshow(im2);
